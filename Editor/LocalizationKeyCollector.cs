@@ -19,8 +19,10 @@ namespace LLarean.LocalizationKeyCollector
 
         // ── Global options ────────────────────────────────────────────────────────
 
-        [SerializeField] private bool   _removeDuplicates = false;
-        [SerializeField] private string _translationLang  = "En";
+        [SerializeField] private bool   _removeDuplicates  = false;
+        [SerializeField] private string _translationLang   = "En";
+        [SerializeField] private string _csvConfigSubdir   = TranslationLookup.DefaultCsvConfigSubdir;
+        [SerializeField] private string _localAssetPath    = TranslationLookup.DefaultLocalAssetPath;
 
         // ── State ─────────────────────────────────────────────────────────────────
 
@@ -69,6 +71,15 @@ namespace LLarean.LocalizationKeyCollector
                 "Language column from CSV (e.g. En, Ru, De, Fr, Es, Ko, Ja). " +
                 "Leave empty to skip translation lookup.",
                 MessageType.None);
+
+            GUILayout.Space(4);
+            EditorGUILayout.LabelField("Localization sources", EditorStyles.boldLabel);
+            _csvConfigSubdir = EditorGUILayout.TextField("CSV config subdir", _csvConfigSubdir);
+            _localAssetPath  = EditorGUILayout.TextField("Local asset path",  _localAssetPath);
+            EditorGUILayout.HelpBox(
+                "CSV config subdir: path relative to Assets/ containing localization .csv files.\n" +
+                "Local asset path: asset path to a ScriptableObject with inline localization data.",
+                MessageType.None);
         }
 
         // ── Output ────────────────────────────────────────────────────────────────
@@ -112,7 +123,7 @@ namespace LLarean.LocalizationKeyCollector
         private void RunCollection()
         {
             string lang         = _translationLang.Trim();
-            var    translations = TranslationLookup.Build(lang);
+            var    translations = TranslationLookup.Build(lang, _csvConfigSubdir, _localAssetPath);
             var    log          = new StringBuilder();
 
             try

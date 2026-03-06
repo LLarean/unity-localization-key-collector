@@ -9,17 +9,18 @@ namespace LLarean.LocalizationKeyCollector
 {
     public static class TranslationLookup
     {
-        private const string CsvConfigSubdir = "Common/Localization/Configs";
-        private const string LocalAssetPath  = "Assets/Modules/Localization/LocalLocalization.asset";
+        public const string DefaultCsvConfigSubdir = "Common/Localization/Configs";
+        public const string DefaultLocalAssetPath  = "Assets/Modules/Localization/LocalLocalization.asset";
 
-        public static Dictionary<string, string> Build(string language)
+        public static Dictionary<string, string> Build(
+            string language, string csvConfigSubdir, string localAssetPath)
         {
             var lookup = new Dictionary<string, string>(System.StringComparer.Ordinal);
             if (string.IsNullOrWhiteSpace(language)) return lookup;
 
             string csvDir = Path.Combine(
                 Application.dataPath,
-                CsvConfigSubdir.Replace('/', Path.DirectorySeparatorChar));
+                csvConfigSubdir.Replace('/', Path.DirectorySeparatorChar));
 
             if (Directory.Exists(csvDir))
             {
@@ -32,7 +33,7 @@ namespace LLarean.LocalizationKeyCollector
                 }
             }
 
-            var asset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(LocalAssetPath);
+            var asset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(localAssetPath);
             if (asset != null)
                 ReadScriptableObjectLookup(asset, language, lookup);
 
