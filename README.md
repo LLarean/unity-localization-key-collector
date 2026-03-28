@@ -1,18 +1,12 @@
-# ![unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white) Localization Key Collector
+# Localization Key Collector
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
 
 > [!WARNING]
-> **Work in progress.** Use at your own risk.
+> Work in progress. Use at your own risk.
 
 Editor utility for collecting localization keys from prefabs, scenes, and code across a Unity project. Exports results to CSV for use in translation workflows.
-
-## Installation
-
-- *(via Package Manager)* Select **Add package from git URL** and enter:
-  - `https://github.com/LLarean/unity-localization-key-collector.git`
-- *(manually)* Clone or download and place into your project's *Assets* folder
 
 ## Quick Start
 
@@ -24,13 +18,21 @@ Editor utility for collecting localization keys from prefabs, scenes, and code a
 
 Two files are produced: one for component-based keys, one for keys found in code.
 
+## Installation
+
+- *(via Package Manager)* Select **Add package from git URL** and enter:
+  - `https://github.com/LLarean/unity-localization-key-collector.git`
+- Clone or download and place into your project's *Assets* folder
+
 ## Requirements
 
 - Unity 2021.3+
 
-## Project Status
+## Contributing
 
-Experimental. Core functionality works but has not been tested across all project configurations.
+- **Bug reports**: [Open an issue](https://github.com/LLarean/unity-localization-key-collector/issues)
+- **Feature requests**: Describe your use case in an issue
+- **Pull requests**: For bug fixes or improvements
 
 ---
 
